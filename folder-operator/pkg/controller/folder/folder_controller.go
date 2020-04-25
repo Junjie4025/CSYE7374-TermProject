@@ -227,6 +227,7 @@ func (r *ReconcileFolder) Reconcile(request reconcile.Request) (reconcile.Result
 	}
 
 	instance.Status.SetupComplete = true
+	r.client.Update(context.TODO(), instance)
 
 	return reconcile.Result{}, nil
 }
