@@ -1,0 +1,10 @@
+apiVersion: example.csye7374termproject/v1alpha1
+kind: Folder
+metadata:
+  name: example-folder
+spec:
+  # Add fields here
+  username: junjie
+  usersecret: secretjunjie
+status:
+  setupComplete: false

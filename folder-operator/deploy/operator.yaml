@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: folder-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: folder-operator
+  template:
+    metadata:
+      labels:
+        name: folder-operator
+    spec:
+      serviceAccountName: folder-operator
+      containers:
+        - name: folder-operator
+          # Replace this with the built image name
+          image: junjie3617/folder-operator:latest
+          command:
+          - folder-operator
+          imagePullPolicy: Always
+          env:
+            - name: WATCH_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: OPERATOR_NAME
+              value: "folder-operator"
